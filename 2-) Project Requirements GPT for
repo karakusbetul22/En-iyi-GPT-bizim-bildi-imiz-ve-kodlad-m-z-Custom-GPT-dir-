@@ -1,0 +1,39 @@
+class MathLibrary:
+    @staticmethod
+    def add(a, b):
+        MathLibrary._validate_numbers(a, b)
+        return a + b
+
+    @staticmethod
+    def subtract(a, b):
+        MathLibrary._validate_numbers(a, b)
+        return a - b
+
+    @staticmethod
+    def multiply(a, b):
+        MathLibrary._validate_numbers(a, b)
+        return a * b
+
+    @staticmethod
+    def divide(a, b):
+        MathLibrary._validate_numbers(a, b)
+        if b == 0:
+            raise ZeroDivisionError("Bölme işleminde payda 0 olamaz.")
+        return a / b
+
+    @staticmethod
+    def _validate_numbers(a, b):
+        if not isinstance(a, (int, float)) or not isinstance(b, (int, float)):
+            raise TypeError("a ve b int veya float olmalıdır.")
+        if a < 0 or b < 0:
+            raise ValueError("Negatif sayılar kabul edilmez.")
+
+if __name__ == "__main__":
+    try:
+        print("3 + 5 =", MathLibrary.add(3, 5))
+        print("10 - 4 =", MathLibrary.subtract(10, 4))
+        print("2 * 3 =", MathLibrary.multiply(2, 3))
+        print("8 / 2 =", MathLibrary.divide(8, 2))
+        print("8 / 0 =", MathLibrary.divide(8, 0))
+    except (TypeError, ValueError, ZeroDivisionError) as e:
+        print(f"Hata: {e}")
